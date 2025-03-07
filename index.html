@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leave Application</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        .hero {
+            background-color: #0056b3;
+            color: white;
+            position: relative;
+            padding: 2rem;
+            border-radius: 0.5rem;
+        }
+        .hero img {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            height: 100px;
+            width: auto;
+        }
+        .card {
+            margin-bottom: 20px;
+            transition: transform 0.3s; /* Smooth transition for zoom effect */
+        }
+        .card:hover {
+            transform: scale(1.05); /* Zoom effect on hover */
+        }
+        .text-danger {
+            color: red;
+        }
+        .form-container {
+            border: 3px solid #0056b3;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            margin-top: 30px;
+        }
+        .form-group label {
+            font-weight: bold;
+        }
+        .assigned-counselor {
+            margin-top: 10px;
+            font-weight: bold;
+            color: green;
+        }
+    </style>
+    <script>
+        let counselorEmail = '';
+        let counselorNames = [];
+
+        function displayCounselors() {
+            const classSelected = document.getElementById("classSelect").value;
+            const regNumber = document.getElementById("regNumber").value;
+            const counselorCards = document.getElementById("counselorCards");
+            const assignedCounselor = document.getElementById("assignedCounselor");
+            counselorCards.innerHTML = ''; // Clear previous counselor details
+            assignedCounselor.innerHTML = ''; // Clear previous assigned counselor name
+            counselorEmail = ''; // Reset email
+            counselorNames = []; // Reset counselor names
+
+            let counselorDetails = '';
+
+            // Display counselors based on class selection
+            if (classSelected === '1stBCA') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Dr. R. S. Padma Priya</h5>
+                                <p class="card-text">Email: priyapadma@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 241fj01001 to 241fj01061.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorEmail = "priyapadma@gmail.com";
+                counselorNames.push("Dr. R. S. Padma Priya");
+                if (/^241fj0100[1-9]$|^241fj010[1-5][0-9]$|^241fj01061$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Dr. R. S. Padma Priya`;
+                }
+            }
+
+            if (classSelected === '2ndBCA') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Irfan Sayyad</h5>
+                                <p class="card-text">Email: sayyadirfan946@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 231fj01002 to 231fj01038.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-secondary">
+                            <div class="card-body">
+                                <h5 class="card-title">Raghavendra Murali</h5>
+                                <p class="card-text">Email: raghavakande183@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 231fj01039 to 231fj01074.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                if (/^231fj0100[2-9]$|^231fj010[1-3][0-8]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Irfan Sayyad`;
+                    counselorEmail = "sayyadirfan946@gmail.com";  // Correct email for 231fj01002 to 231fj01038
+                } else if (/^231fj01039$|^231fj010[4-7][0-4]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Raghavendra Murali`;
+                    counselorEmail = "raghavakande183@gmail.com";  // Correct email for 231fj01039 to 231fj01074
+                }
+            }
+
+            if (classSelected === '3rdBCA') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Rahul</h5>
+                                <p class="card-text">Email: rahulpeddipaga70938@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 22fj01002 to 221fj01041.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-secondary">
+                            <div class="card-body">
+                                <h5 class="card-title">Sri Vyshnavi</h5>
+                                <p class="card-text">Email: tallamvyshnavi2002@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 221fj01042 to 221fj01078.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                
+                if (/^22fj0100[2-9]$|^221fj010[0-4][0-1]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Rahul`;
+                    counselorEmail = "rahulpeddipaga70938@gmail.com";  // Correct email for 22fj01002 to 221fj01041
+                } else if (/^221fj010[4-7][0-8]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Sri Vyshnavi`;
+                    counselorEmail = "tallamvyshnavi2002@gmail.com";  // Correct email for 221fj01042 to 221fj01078
+                }
+            }
+
+            if (classSelected === '1stMCA') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">R. Naga Sirisha</h5>
+                                <p class="card-text">Email: sirigogineni12@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 241fd01001 to 241fd01099.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorEmail = "sirigogineni12@gmail.com";
+                counselorNames.push("Lakshmi Tanuja");
+                if (/^241fd0100[1-9]$|^241fd010[1-9][0-9]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Naga sirisha`;
+                }
+            }
+
+            if (classSelected === '1stMCAB') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Lakshmi Tanuja</h5>
+                                <p class="card-text">Email: thanujakota423@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 241fd01101 to 241fd01177.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorEmail = "thanujakota423@gmail.com";
+                counselorNames.push("Lakshmi Tanuja");
+                if (/^241fd0110[1-9]$|^241fd011[1-7][0-7]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Lakshmi Tanuja`;
+                }
+            }
+
+            if (classSelected === '2ndMCA') {
+                counselorDetails += `
+                    <div class="col-md-6 mb-4">
+                        <div class="card border-primary">
+                            <div class="card-body">
+                                <h5 class="card-title">Siva Koteshwarrao</h5>
+                                <p class="card-text">Email: csrvictory@gmail.com</p>
+                                <p class="card-text">Counselor for registration numbers 231fd01001 to 231fd01076.</p>
+                            </div>
+                        </div>
+                    </div>
+                `;
+                counselorEmail = "csrvictory@gmail.com";
+                counselorNames.push("Siva Koteshwarrao");
+                if (/^231fd0100[1-9]$|^231fd010[1-6][0-9]$/.test(regNumber)) {
+                    assignedCounselor.innerHTML = `Assigned Counselor: Siva Koteshwarrao`;
+                }
+            }
+
+            // Display the counselor cards
+            counselorCards.innerHTML = counselorDetails;
+        }
+
+        function submitForm(event) {
+            event.preventDefault(); // Prevent default form submission
+            const regNumber = document.getElementById("regNumber").value;
+            const name = document.getElementById("name").value;
+            const dateOfLeave = document.getElementById("dateOfLeave").value;
+            const reasonForLeave = document.getElementById("reasonForLeave").value;
+
+            if (!counselorEmail) {
+                alert("Please select a valid class and registration number.");
+                return;
+            }
+
+            // Construct the email body
+            const emailBody = `Dear Counselor,\n\n` +
+                              `I, ${name}, with registration number ${regNumber}, would like to request leave on ${dateOfLeave}. ` +
+                              `The reason for my leave is as follows: ${reasonForLeave}.\n\n` +
+                              `Thank you for your consideration.\n\n` +
+                              `Best regards,\n` +
+                              `${name}`;
+
+            // Set the form action to the mailto link with subject and body
+            const mailtoLink = `mailto:${counselorEmail}?subject=Leave Application&body=${encodeURIComponent(emailBody)}`;
+            window.location.href = mailtoLink; // Redirect to mailto link
+        }
+
+        function cancelForm() {
+            document.getElementById("leaveForm").reset();
+            document.getElementById("assignedCounselor").innerHTML = ''; // Clear assigned counselor name
+            document.getElementById("counselorCards").innerHTML = ''; // Clear counselor cards
+            counselorEmail = ''; // Reset email
+            counselorNames = []; // Reset counselor names
+        }
+    </script>
+</head>
+<body>
+    <!-- Hero Section -->
+    <div class="hero text-center">
+        <h1 class="display-4">Leave Application</h1>
+        <p class="lead">Choose your class and apply for leave by filling out the form below.</p>
+        <img src="https://vignan.ac.in/casefdp/assets/img/LOGO_change.jpg" alt="Vignan University Logo">
+    </div>
+
+    <div class="container mt-5">
+        <!-- Counselor Section -->
+        <div id="counselorCards" class="row mt-3"></div> <!-- Counselor cards will be displayed here -->
+        <h2>Leave Application Form</h2>
+        <div id="assignedCounselor" class="assigned-counselor mt-2"></div> <!-- Display assigned counselor name here -->
+
+        <!-- Form Section -->
+        <div class="form-container mt-4">
+            <form id="leaveForm" onsubmit="submitForm(event)">
+                <div class="form-group">
+                    <label for="classSelect">Select your class:</label>
+                    <select class="form-control" id="classSelect" onchange="displayCounselors()">
+                        <option value="">Select a class</option>
+                        <option value="1stBCA">1st BCA</option>
+                        <option value="2ndBCA">2nd BCA</option>
+                        <option value="3rdBCA">3rd BCA</option>
+                        <option value="1stMCA">1st MCA Section A</option>
+                        <option value="1stMCAB">1st MCA Section B</option>
+                        <option value="2ndMCA">2nd MCA</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="regNumber">Registration Number:</label>
+                    <input type="text" class="form-control" id="regNumber" name="regNumber" required oninput="displayCounselors()">
+                </div>
+                <div class="form-group">
+                    <label for="name">Name:</label>
+                    <input type="text" class="form-control" id="name" name="name" required>
+                </div>
+                <div class="form-group">
+                    <label for="dateOfLeave">Date of Leave:</label>
+                    <input type="date" class="form-control" id="dateOfLeave" name="dateOfLeave" required>
+                </div>
+                <div class="form-group">
+                    <label for="reasonForLeave">Reason for Leave:</label>
+                    <textarea class="form-control" id="reasonForLeave" name="reasonForLeave" rows="3" required></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="button" class="btn btn-secondary" onclick="cancelForm()">Cancel</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer class="text-center py-4">
+        <p>&copy; 2025 Vignan University. All rights reserved.</p>
+    </footer>
+
+    <!-- Bootstrap 4 JS & dependencies -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>
